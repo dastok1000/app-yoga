@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yoga Reservas 0.1.1-pub — descarga</title>
+  <style>
+    :root { --brand:#3f6f5a; --ink:#1c2b24; --muted:#4c5c54; --bg:#f6f3ee; --card:#fff; --line:#d7e0da; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Georgia, "Times New Roman", serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+    header, main, footer { max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; }
+    header { padding-top: 2.5rem; }
+    h1, h2 { font-weight: 700; letter-spacing: -0.02em; }
+    h1 { font-size: 1.85rem; margin: 0 0 .4rem; color: var(--brand); }
+    h2 { font-size: 1.2rem; margin: 2rem 0 .6rem; }
+    p, li { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .lead { font-size: 1.05rem; color: var(--muted); margin: 0 0 1.25rem; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.15rem 1.25rem; margin: 1rem 0; }
+    .btn { display: inline-block; background: var(--brand); color: #fff; text-decoration: none; padding: .7rem 1.15rem; border-radius: 8px; font-family: system-ui, sans-serif; font-weight: 600; }
+    .btn:hover { filter: brightness(1.05); }
+    .meta { font-family: ui-monospace, Consolas, monospace; font-size: .86rem; word-break: break-all; }
+    .warn { background: #fff6e8; border: 1px solid #ead2a8; border-radius: 14px; padding: 1rem 1.15rem; margin: 1rem 0; }
+    .warn strong { color: #7a4d00; }
+    code, pre { font-family: ui-monospace, Consolas, monospace; font-size: .86rem; }
+    pre { background: #1c2b24; color: #f6f3ee; padding: 1rem; border-radius: 10px; overflow: auto; }
+    a { color: var(--brand); }
+    footer { padding: 2rem 1.25rem 3rem; color: var(--muted); font-family: system-ui, sans-serif; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Yoga Reservas 0.1.1-pub</h1>
+    <p class="lead">Prototipo local de reservas para un estudio de yoga. Se ejecuta solo en tu PC, sin internet y sin instalar nada.</p>
+  </header>
+  <main>
+    <div class="card">
+      <p><a class="btn" href="https://github.com/dastok1000/app-yoga/releases/download/v0.1.1-pub/yoga-reservas-0.1.1-pub-windows.zip">Descargar el ZIP para Windows</a></p>
+      <p>Archivo: <span class="meta">yoga-reservas-0.1.1-pub-windows.zip</span><br>
+        Tamaño: <span class="meta">35.014.737 bytes</span> (33,4&nbsp;MiB)<br>
+        SHA-256: <span class="meta">d4bdc404013269ddbc4a79e85fb31f5a87e06a49261fe44fc7642c4199e9a841</span></p>
+      <p>Código y releases: <a href="https://github.com/dastok1000/app-yoga">github.com/dastok1000/app-yoga</a>.</p>
+    </div>
+
+    <div class="warn">
+      <p><strong>Es un prototipo.</strong> Los pagos están simulados: no se cobra nada ni se conecta a ninguna pasarela real. Los avisos se guardan en la propia app; no se envían correos ni SMS.</p>
+      <p><strong>Windows puede mostrar SmartScreen</strong> al abrir un <code>.bat</code> descargado de internet. Si has comprobado el hash del ZIP y confías en la descarga, elige «Más información» y luego «Ejecutar de todas formas».</p>
+    </div>
+
+    <h2>Comprobar el hash del ZIP</h2>
+    <p>En el Símbolo del sistema (cmd):</p>
+    <pre>certutil -hashfile yoga-reservas-0.1.1-pub-windows.zip SHA256</pre>
+    <p>En PowerShell:</p>
+    <pre>Get-FileHash yoga-reservas-0.1.1-pub-windows.zip -Algorithm SHA256</pre>
+    <p>El resultado debe coincidir con <code>d4bdc404013269ddbc4a79e85fb31f5a87e06a49261fe44fc7642c4199e9a841</code>.</p>
+
+    <h2>Instalar y arrancar</h2>
+    <ol>
+      <li>Descomprime el ZIP entero en una carpeta.</li>
+      <li>Haz doble clic en <strong>Abrir.bat</strong>. Se abre una consola (el servidor) y el navegador en <code>http://127.0.0.1:8795/</code>. El servidor escucha solo en este PC (127.0.0.1). El puerto se puede cambiar con <code>YOGA_PORT</code>.</li>
+      <li>En el primer arranque no hay usuarios. Crea tú la cuenta de administración. El horario empieza vacío.</li>
+      <li>Deja la ventana abierta mientras uses la app; ciérrala para parar.</li>
+    </ol>
+    <p>El ZIP incluye el runtime oficial de Node.js v24.22.1 para Windows (x64). Su licencia (MIT y licencias de terceros) está en <code>yoga-reservas/runtime/LICENSE</code>.</p>
+
+    <h2>Actualizar sin perder datos (U1–U3)</h2>
+    <ol>
+      <li><strong>U1.</strong> Cierra la app (cierra la ventana o Ctrl+C) y espera a que desaparezca.</li>
+      <li><strong>U2.</strong> Copia la carpeta <code>data\</code> entera (incluidos <code>yoga.db</code>, <code>yoga.db-wal</code>, <code>yoga.db-shm</code> y <code>avisos.log</code> si existen) a la carpeta de la versión nueva. No abras aún la versión nueva en otra carpeta: se crearía una base vacía.</li>
+      <li><strong>U3.</strong> Entonces ejecuta <code>Abrir.bat</code> de la carpeta nueva.</li>
+    </ol>
+    <p>No uses <code>Restablecer-datos.bat</code> al actualizar: borra todos los datos. Ese archivo solo sirve si quieres empezar de cero; no crea usuarios de ejemplo.</p>
+    <p>Las instrucciones completas están en el <code>README.md</code> del ZIP y en el <a href="https://github.com/dastok1000/app-yoga">repositorio</a>.</p>
+
+    <h2>Aviso de uso</h2>
+    <p>Puedes descargar este prototipo y ejecutarlo en tu propio PC. Se ofrece tal cual, sin garantía de ningún tipo. Todos los derechos reservados. No lo uses para cobrar a alumnos reales mientras los pagos sigan simulados. El runtime de Node.js se distribuye con su propia licencia, en <code>yoga-reservas/runtime/LICENSE</code>.</p>
+  </main>
+  <footer>
+    Yoga Reservas 0.1.1-pub · prototipo local · <a href="https://github.com/dastok1000/app-yoga">dastok1000/app-yoga</a>
+  </footer>
+</body>
+</html>
